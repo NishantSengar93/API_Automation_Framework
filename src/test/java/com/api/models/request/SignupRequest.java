@@ -135,7 +135,7 @@ public class SignupRequest {
         public SignupRequest build()
         {
             return new SignupRequest(email,firstName,lastName,mobileNumber,password,username);
-            
+
         }
     }
 }
