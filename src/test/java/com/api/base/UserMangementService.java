@@ -11,4 +11,11 @@ public class UserMangementService extends BaseService{
         setToken(token);
         return getRequest(BASE_PATH+"profile");
     }
+
+    public Response updateProfile(String token,Object payload)
+    {
+        setToken(token);
+        return putRequest(payload,BASE_PATH+"profile");
+    }
+
 }
