@@ -6,15 +6,18 @@ import com.api.models.request.LoginRequest;
 import com.api.models.request.UserProfileUpdateRequest;
 import com.api.models.response.LoginResponse;
 import com.api.models.response.UserProfileResponse;
+import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
+@Listeners(com.api.listeners.TestListener.class)
 public class UpdateUserProfileTest {
     @Test
     void updateProfile()
     {
-        LoginRequest loginRequest = new LoginRequest("Nishant123","Nishant");
+        Faker faker = new Faker();
+        LoginRequest loginRequest = new LoginRequest("garth.lubowitz123","garth.lubowitz");
         AuthService authService = new AuthService();
         Response response = authService.login(loginRequest);
         LoginResponse loginResponse = response.as(LoginResponse.class);
@@ -32,10 +35,10 @@ public class UpdateUserProfileTest {
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println(loginResponse.getToken());
         UserProfileUpdateRequest userProfileUpdateRequest =  new UserProfileUpdateRequest.Builder()
-                .setEmail("newemail@gmail.com")
-                .setFirstName("Nishant")
-                .setLastName("Sengar")
-                .setMobileNumber("9033890098")
+                .setEmail(faker.internet().emailAddress())
+                .setFirstName(faker.name().firstName())
+                .setLastName(faker.name().lastName())
+                .setMobileNumber(faker.number().digits(10))
                 .build();
         response=userMangementService.updateProfile(loginResponse.getToken(), userProfileUpdateRequest);
         System.out.println(response.asPrettyString());
