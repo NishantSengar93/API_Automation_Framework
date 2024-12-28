@@ -7,11 +7,12 @@ import com.api.models.response.LoginResponse;
 import com.api.models.response.UserProfileResponse;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-
+@Listeners(com.api.listeners.TestListener.class)
 public class GetProfileRequestTest {
-    @Test
+    @Test(description = "Verify get profile API...")
     void getProfile() {
 
         LoginRequest loginRequest = new LoginRequest("Nishant123", "Nishant");
