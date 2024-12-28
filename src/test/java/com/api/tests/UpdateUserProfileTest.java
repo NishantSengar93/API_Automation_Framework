@@ -13,7 +13,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 @Listeners(com.api.listeners.TestListener.class)
 public class UpdateUserProfileTest {
-    @Test
+    @Test(description = "Verify Signup functionality...")
     void updateProfile()
     {
         Faker faker = new Faker();
